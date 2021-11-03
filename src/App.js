@@ -8,7 +8,7 @@ import {
   News,
 } from "./components";
 import { Layout, Typography, Space } from "antd";
-import { Switch, Link, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "antd/dist/antd.css";
 import {
   GithubOutlined,
