@@ -1,9 +1,65 @@
-const Cryptocurrencies = () => {
-    return (
-        <div>
-            Cryptocurrencies
-        </div>
-    )
-}
+import { Card, Col, Row, Typography } from "antd";
+import millify from "millify";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useGetCryptosQuery } from "../services/cryptoApi";
 
-export default Cryptocurrencies
+const Cryptocurrencies = ({ homepage }) => {
+  const limit = homepage ? 10 : 100;
+  const { data, isFetching } = useGetCryptosQuery(limit);
+  const [cryptos, setCryptos] = useState(data?.data?.coins);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    let filteredCryptos = data?.data?.coins?.filter((crypto) =>
+      crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setCryptos(filteredCryptos);
+  }, [searchTerm, data]);
+
+  if (isFetching)
+    return <Typography.Title level={2}>Loading...</Typography.Title>;
+
+  return (
+    <div>
+      {!homepage ? (
+        <form className="search-crypto">
+          <input
+            type="text"
+            value={searchTerm}
+            style={{ paddingInline: "10px", outline:'none' }}
+            placeholder="Search Cryptocurrency"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
+      ) : (
+        ""
+      )}
+      <Row gutter={[32, 32]}>
+        {cryptos?.map((crypto) => (
+          <Col xs={24} sm={12} lg={6} className="crypto-card" key={crypto.id}>
+            <Link to={`crypto/${crypto.id}`}>
+              <Card
+                title={`${crypto.rank}. ${crypto.name}`}
+                extra={
+                  <img
+                    className="crypto-image"
+                    src={`${crypto.iconUrl}`}
+                    alt={`${crypto.name}`}
+                  />
+                }
+                hoverable
+              >
+                <p>Price : {millify(crypto.price)}</p>
+                <p>Market cap : {millify(crypto.marketCap)}</p>
+                <p>Daily change : {millify(crypto.change)}%</p>
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    </div>
+  );
+};
+
+export default Cryptocurrencies;
