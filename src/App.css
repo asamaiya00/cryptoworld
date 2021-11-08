@@ -287,7 +287,7 @@ a:hover {
 }
 
 .select-news {
-  width: 180px;
+  width: 300px;
 }
 .news-card {
   min-height: 300px !important;
@@ -311,6 +311,7 @@ a:hover {
 .provider-container {
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
 }
 .provider-name {
   margin-left: 10px;
@@ -351,8 +352,15 @@ a:hover {
   margin: 0px 10px !important;
 }
 .search-crypto {
-  margin: 20px auto 30px auto;
-  width: 250px;
+  margin: 20px auto;
+  width: 450px;
+  outline: "none";
+  text-align: center;
+}
+
+.search-crypto input {
+  padding: 5px 10px;
+  width: 70%;
 }
 .crypto-card-container {
   min-height: 65vh !important;

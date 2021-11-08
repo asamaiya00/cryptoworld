@@ -23,15 +23,14 @@ const Cryptocurrencies = ({ homepage }) => {
   return (
     <div>
       {!homepage ? (
-        <form className="search-crypto">
+        <div className="search-crypto">
           <input
             type="text"
             value={searchTerm}
-            style={{ paddingInline: "10px", outline:'none' }}
             placeholder="Search Cryptocurrency"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-        </form>
+        </div>
       ) : (
         ""
       )}

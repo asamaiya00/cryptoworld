@@ -49,19 +49,19 @@ const HomePage = () => {
         </Col>
       </Row>
       <div className="home-heading-container">
-        <Title level="2" className="home-title">
+        <Title level={2} className="home-title">
           Top 10 Cryptocurrencies globally
         </Title>
-        <Title level="2" className="show-more">
+        <Title level={4} className="show-more">
           <Link to="/cryptocurrencies"> Show More</Link>
         </Title>
       </div>
       <Cryptocurrencies homepage />
       <div className="home-heading-container">
-        <Title level="2" className="home-title">
+        <Title level={2} className="home-title">
           Crypto News
         </Title>
-        <Title level="2" className="show-more">
+        <Title level={4} className="show-more">
           <Link to="/news"> Show More</Link>
         </Title>
       </div>
