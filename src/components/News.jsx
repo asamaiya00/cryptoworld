@@ -3,6 +3,7 @@ import { Col, Row, Typography, Card, Select, Avatar } from "antd";
 import moment from "moment";
 import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 import { useGetCryptosQuery } from "../services/cryptoApi";
+import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -12,13 +13,13 @@ const backupImage =
 
 const News = ({ homepage }) => {
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
-  const { data } = useGetCryptoNewsQuery({
+  const { data, isFetching } = useGetCryptoNewsQuery({
     newsCategory,
     count: homepage ? 6 : 12,
   });
   const { data: cryptos } = useGetCryptosQuery(100);
 
-  if (!data?.value) return <Title level={2}>Loading...</Title>;
+  if (isFetching) return <Loader />;
 
   return (
     <Row gutter={[24, 24]}>

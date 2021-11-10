@@ -3,13 +3,14 @@ import { useGetCryptosQuery } from "../services/cryptoApi";
 import millify from "millify";
 import { Link } from "react-router-dom";
 import { Cryptocurrencies, News } from ".";
+import Loader from "./Loader";
 
 const HomePage = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
   const stats = data?.data?.stats;
 
   const { Title } = Typography;
-  if (isFetching) return <Title level={2}>'Loading...'</Title>;
+  if (isFetching) return <Loader />;
 
   return (
     <div>

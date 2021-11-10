@@ -1,8 +1,9 @@
-import { Card, Col, Row, Typography } from "antd";
+import { Card, Col, Row } from "antd";
 import millify from "millify";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../services/cryptoApi";
+import Loader from "./Loader";
 
 const Cryptocurrencies = ({ homepage }) => {
   const limit = homepage ? 10 : 100;
@@ -17,8 +18,7 @@ const Cryptocurrencies = ({ homepage }) => {
     setCryptos(filteredCryptos);
   }, [searchTerm, data]);
 
-  if (isFetching)
-    return <Typography.Title level={2}>Loading...</Typography.Title>;
+  if (isFetching) return <Loader />;
 
   return (
     <div>

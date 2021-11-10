@@ -67,7 +67,7 @@ a:hover {
 }
 
 .loader {
-  height: 81vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
