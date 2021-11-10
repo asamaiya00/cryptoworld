@@ -327,10 +327,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   gap: 50px;
-  color: #0071bd;
+  color: #1880c5;
 }
 .chart-title {
-  color: #0071bd !important;
+  color: #1880c5 !important;
 }
 .price-container {
   display: flex !important;

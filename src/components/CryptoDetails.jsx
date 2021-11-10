@@ -33,8 +33,7 @@ const CryptoDetails = () => {
   });
   if (isFetching || isFetching2) return "loading";
   const cryptoDetails = data?.data?.coin;
-  console.log(cryptoHistory);
-  const time = [ "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
+  const time = ["24h", "7d", "30d", "3m", "1y", "3y", "5y"];
 
   const stats = [
     {
@@ -161,7 +160,7 @@ const CryptoDetails = () => {
           </Title>
           {HTMLReactParser(cryptoDetails.description)}
         </Row>
-        
+
         <Col className="coin-links">
           <Title level={3} className="coin-details-heading">
             {cryptoDetails.name} Links
