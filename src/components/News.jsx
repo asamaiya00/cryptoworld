@@ -37,7 +37,7 @@ const News = ({ homepage }) => {
           >
             <Option value="Cryptocurrency"> All Cryptocurrencies</Option>
             {cryptos?.data?.coins?.map((crypto) => (
-              <Option value={crypto.name}>{crypto.name}</Option>
+              <Option key={crypto.name} value={crypto.name}>{crypto.name}</Option>
             ))}
           </Select>
         </Col>

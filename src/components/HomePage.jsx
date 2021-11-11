@@ -14,7 +14,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Title className="heading" level="2">
+      <Title className="heading" level={2}>
         Global Crypto Stats
       </Title>
       <Row>

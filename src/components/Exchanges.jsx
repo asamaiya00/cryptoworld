@@ -9,7 +9,6 @@ const { Panel } = Collapse;
 const { Text } = Typography;
 const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
-  console.log(data?.data);
   if (isFetching) return <Loader />;
   return (
     <>
@@ -21,7 +20,7 @@ const Exchanges = () => {
       </Row>
       <Row>
         {data?.data?.exchanges?.map((exchange) => (
-          <Col span={24}>
+          <Col span={24} key={exchange.id}>
             <Collapse>
               <Panel
                 showArrow={false}
