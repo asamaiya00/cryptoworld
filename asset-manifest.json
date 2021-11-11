@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/cryptoworld/static/css/main.e809b7b7.chunk.css",
-    "main.js": "/cryptoworld/static/js/main.c8f24347.chunk.js",
-    "main.js.map": "/cryptoworld/static/js/main.c8f24347.chunk.js.map",
-    "runtime-main.js": "/cryptoworld/static/js/runtime-main.5547e3fe.js",
-    "runtime-main.js.map": "/cryptoworld/static/js/runtime-main.5547e3fe.js.map",
-    "static/css/2.a95be28f.chunk.css": "/cryptoworld/static/css/2.a95be28f.chunk.css",
-    "static/js/2.553330e2.chunk.js": "/cryptoworld/static/js/2.553330e2.chunk.js",
-    "static/js/2.553330e2.chunk.js.map": "/cryptoworld/static/js/2.553330e2.chunk.js.map",
-    "index.html": "/cryptoworld/index.html",
-    "static/css/2.a95be28f.chunk.css.map": "/cryptoworld/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.e809b7b7.chunk.css.map": "/cryptoworld/static/css/main.e809b7b7.chunk.css.map",
-    "static/js/2.553330e2.chunk.js.LICENSE.txt": "/cryptoworld/static/js/2.553330e2.chunk.js.LICENSE.txt",
-    "static/media/cryptocurrencies.28e55722.png": "/cryptoworld/static/media/cryptocurrencies.28e55722.png"
+    "main.css": "/static/css/main.e809b7b7.chunk.css",
+    "main.js": "/static/js/main.c8f24347.chunk.js",
+    "main.js.map": "/static/js/main.c8f24347.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.14b9ebdb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.14b9ebdb.js.map",
+    "static/css/2.a95be28f.chunk.css": "/static/css/2.a95be28f.chunk.css",
+    "static/js/2.f515860f.chunk.js": "/static/js/2.f515860f.chunk.js",
+    "static/js/2.f515860f.chunk.js.map": "/static/js/2.f515860f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.e809b7b7.chunk.css.map": "/static/css/main.e809b7b7.chunk.css.map",
+    "static/js/2.f515860f.chunk.js.LICENSE.txt": "/static/js/2.f515860f.chunk.js.LICENSE.txt",
+    "static/media/cryptocurrencies.28e55722.png": "/static/media/cryptocurrencies.28e55722.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.5547e3fe.js",
+    "static/js/runtime-main.14b9ebdb.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.553330e2.chunk.js",
+    "static/js/2.f515860f.chunk.js",
     "static/css/main.e809b7b7.chunk.css",
     "static/js/main.c8f24347.chunk.js"
   ]
