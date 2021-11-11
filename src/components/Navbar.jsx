@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="logo-container">
         <Avatar style={{ marginRight: "12px" }} src={icon} size={"large"} />
         <Typography.Title level={2}>
-          <Link to="/">CryptoWorld </Link>
+          <Link to="/cryptoworld/">CryptoWorld </Link>
         </Typography.Title>
         <Button
           className="menu-control-container"
@@ -47,16 +47,16 @@ const Navbar = () => {
         <div>
           <Menu theme="dark">
             <Menu.Item icon={<HomeOutlined />}>
-              <Link to="/">Home </Link>
+              <Link to="/cryptoworld/">Home </Link>
             </Menu.Item>
             <Menu.Item icon={<FundOutlined />}>
-              <Link to="/cryptocurrencies">Cryptocurrencies </Link>
+              <Link to="/cryptoworld/cryptocurrencies">Cryptocurrencies </Link>
             </Menu.Item>
             <Menu.Item icon={<MoneyCollectOutlined />}>
-              <Link to="/exchanges">Exchanges </Link>
+              <Link to="/cryptoworld/exchanges">Exchanges </Link>
             </Menu.Item>
             <Menu.Item icon={<BulbOutlined />}>
-              <Link to="/news">News </Link>
+              <Link to="/cryptoworld/news">News </Link>
             </Menu.Item>
           </Menu>
         </div>

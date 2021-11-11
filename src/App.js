@@ -26,19 +26,19 @@ function App() {
         <Layout>
           <div className="routes">
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/cryptoworld/">
                 <HomePage />
               </Route>
-              <Route exact path="/cryptocurrencies">
+              <Route exact path="/cryptoworld/cryptocurrencies">
                 <Cryptocurrencies />
               </Route>
-              <Route exact path="/exchanges">
+              <Route exact path="/cryptoworld/exchanges">
                 <Exchanges />
               </Route>
-              <Route exact path="/crypto/:coinId">
+              <Route exact path="/cryptoworld/crypto/:coinId">
                 <CryptoDetails />
               </Route>
-              <Route exact path="/news">
+              <Route exact path="/cryptoworld/news">
                 <News />
               </Route>
             </Switch>
