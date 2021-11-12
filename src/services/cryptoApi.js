@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const cryptoHeaders = {
   "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-  "x-rapidapi-key": "4833128136msh96b9e5d7beb29bap134de2jsnf7a4b70bc6d3",
+  "x-rapidapi-key": process.env.REACT_APP_KEY,
   "x-access-token": "i-have-to-migrate-to-v2",
 };
 
@@ -25,8 +25,7 @@ export const cryptoApi = createApi({
         createRequest(`/coin/${coinId}/history/${timePeriod}`),
     }),
     getExchanges: builder.query({
-      query: () =>
-        createRequest(`/exchanges`),
+      query: () => createRequest(`/exchanges`),
     }),
   }),
 });
