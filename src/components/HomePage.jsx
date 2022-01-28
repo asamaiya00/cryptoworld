@@ -11,7 +11,6 @@ const HomePage = () => {
 
   const { Title } = Typography;
   if (isFetching) return <Loader />;
-  console.log(stats);
   return (
     <div>
       <Row gutter={[32, 0]}>
