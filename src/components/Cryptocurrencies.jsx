@@ -1,22 +1,26 @@
-import { Card, Col, Row } from "antd";
-import millify from "millify";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useGetCryptosQuery } from "../services/cryptoApi";
-import Loader from "./Loader";
+import { Card, Col, Row } from 'antd';
+import millify from 'millify';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const Cryptocurrencies = ({ homepage }) => {
-  const limit = homepage ? 10 : 100;
-  const { data, isFetching } = useGetCryptosQuery(limit);
-  const [cryptos, setCryptos] = useState(data?.data?.coins);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { data, isFetching } = useGetCryptosQuery();
+  console.log(data);
+  const [cryptos, setCryptos] = useState(Object.values(data?.result ?? {}));
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    let filteredCryptos = data?.data?.coins?.filter((crypto) =>
-      crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setCryptos(filteredCryptos);
-  }, [searchTerm, data]);
+    if (data) {
+      let filteredCryptos = Object.values(data?.result);
+      if (homepage) filteredCryptos.splice(10);
+      filteredCryptos = filteredCryptos?.filter((crypto) =>
+        crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setCryptos(filteredCryptos);
+    }
+  }, [searchTerm, data, homepage]);
 
   if (isFetching) return <Loader />;
 
@@ -32,30 +36,42 @@ const Cryptocurrencies = ({ homepage }) => {
           />
         </div>
       ) : (
-        ""
+        ''
       )}
       <Row gutter={[32, 32]}>
-        {cryptos?.map((crypto) => (
-          <Col xs={24} sm={12} lg={6} className="crypto-card" key={crypto.id}>
-            <Link to={`/cryptoworld/crypto/${crypto.id}`}>
-              <Card
-                title={`${crypto.rank}. ${crypto.name}`}
-                extra={
-                  <img
-                    className="crypto-image"
-                    src={`${crypto.iconUrl}`}
-                    alt={`${crypto.name}`}
-                  />
-                }
-                hoverable
-              >
-                <p>Price : {millify(crypto.price)}</p>
-                <p>Market cap : {millify(crypto.marketCap)}</p>
-                <p>Daily change : {millify(crypto.change)}%</p>
-              </Card>
-            </Link>
-          </Col>
-        ))}
+        {cryptos &&
+          cryptos?.map((crypto) => (
+            <Col
+              xs={24}
+              sm={12}
+              lg={6}
+              className="crypto-card"
+              key={crypto.key}
+            >
+              <Link to={`/cryptoworld/coin/profile/${crypto.key}`}>
+                <Card
+                  title={`${crypto.rank}. ${crypto.name}`}
+                  extra={
+                    <img
+                      className="crypto-image"
+                      src={`${crypto.logo}`}
+                      alt={`${crypto.name}`}
+                    />
+                  }
+                  hoverable
+                >
+                  <p>Price : {millify(crypto?.quote?.quotes_price) || 0}</p>
+                  <p>
+                    Market cap : {millify(crypto?.quote?.quotes_marketCap) || 0}
+                  </p>
+                  <p>
+                    Daily change :{' '}
+                    {millify(crypto?.quote?.quotes_percentChange24h) || 0}%
+                  </p>
+                </Card>
+              </Link>
+            </Col>
+          ))}
       </Row>
     </div>
   );

@@ -1,23 +1,23 @@
-import { useState } from "react";
-import { Col, Row, Typography, Card, Select, Avatar } from "antd";
-import moment from "moment";
-import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
-import { useGetCryptosQuery } from "../services/cryptoApi";
-import Loader from "./Loader";
+import { useState } from 'react';
+import { Col, Row, Typography, Card, Select, Avatar } from 'antd';
+import moment from 'moment';
+import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const backupImage =
-  "https://images.pexels.com/photos/4808279/pexels-photo-4808279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+  'https://images.pexels.com/photos/4808279/pexels-photo-4808279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
 
 const News = ({ homepage }) => {
-  const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
+  const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
   const { data, isFetching } = useGetCryptoNewsQuery({
     newsCategory,
     count: homepage ? 6 : 12,
   });
-  const { data: cryptos } = useGetCryptosQuery(100);
+  // const { data: cryptos } = useGetCryptosQuery(100);
 
   if (isFetching) return <Loader />;
 
@@ -36,13 +36,13 @@ const News = ({ homepage }) => {
             }
           >
             <Option value="Cryptocurrency"> All Cryptocurrencies</Option>
-            {cryptos?.data?.coins?.map((crypto) => (
+            {/* {cryptos?.data?.coins?.map((crypto) => (
               <Option key={crypto.name} value={crypto.name}>{crypto.name}</Option>
-            ))}
+            ))} */}
           </Select>
         </Col>
       ) : (
-        ""
+        ''
       )}
       {data?.value.map((news, index) => (
         <Col xs={24} sm={12} lg={8} key={index}>
@@ -50,10 +50,10 @@ const News = ({ homepage }) => {
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>
-                  {news.name}{" "}
+                  {news.name}{' '}
                 </Title>
                 <img
-                  style={{ maxHeight: "100px", maxWidth: "100px" }}
+                  style={{ maxHeight: '100px', maxWidth: '100px' }}
                   src={news?.image?.thumbnail?.contentUrl || backupImage}
                   alt="news"
                 />
@@ -74,7 +74,7 @@ const News = ({ homepage }) => {
                   </Text>
                 </div>
                 <Text>
-                  {moment(news?.datePublished)?.startOf("ss")?.fromNow()}
+                  {moment(news?.datePublished)?.startOf('ss')?.fromNow()}
                 </Text>
               </div>
             </a>
