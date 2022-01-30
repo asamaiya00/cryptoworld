@@ -1,13 +1,13 @@
 import { Col, Row, Card, Statistic, Typography } from 'antd';
-import { useGetStatsQuery } from '../services/cryptoApi';
+import { useGetCryptosQuery } from '../services/cryptoApi';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { Cryptocurrencies, News } from '.';
 import Loader from './Loader';
 
 const HomePage = () => {
-  const { data, isFetching } = useGetStatsQuery();
-  const stats = data?.result;
+  const { data, isFetching } = useGetCryptosQuery(10);
+  const stats = data?.data?.stats;
 
   const { Title } = Typography;
   if (isFetching) return <Loader />;
@@ -32,31 +32,31 @@ const HomePage = () => {
           <Card>
             <Statistic
               title="Total Cryptocurrencies"
-              value={stats?.num_cryptocurrencies}
+              value={stats?.totalCoins}
             ></Statistic>
           </Card>
           <Card style={{ marginTop: '16px' }}>
             <Statistic
               title="Total Market Cap"
-              value={millify(stats?.market_cap)}
+              value={millify(stats?.totalMarketCap)}
             ></Statistic>
           </Card>
           <Card style={{ marginTop: '16px' }}>
             <Statistic
               title="Total 24h Volume"
-              value={millify(stats?.total_vol)}
+              value={millify(stats?.total24hVolume)}
             ></Statistic>
           </Card>
           <Card style={{ marginTop: '16px' }}>
             <Statistic
               title="Total Markets"
-              value={millify(stats?.num_markets)}
+              value={millify(stats?.totalMarkets)}
             ></Statistic>
           </Card>
           <Card style={{ marginTop: '16px' }}>
             <Statistic
               title="Total Exchanges"
-              value={millify(stats?.active_exchanges)}
+              value={millify(stats?.totalExchanges)}
             ></Statistic>
           </Card>
         </Col>

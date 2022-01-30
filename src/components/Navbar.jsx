@@ -1,15 +1,14 @@
-import { Menu, Typography, Avatar, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Menu, Typography, Avatar, Button } from 'antd';
+import { Link } from 'react-router-dom';
 import {
   HomeOutlined,
-  MoneyCollectOutlined,
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
-import icon from "../images/cryptocurrencies.png";
-import { useEffect, useState } from "react";
+import icon from '../images/cryptocurrencies.png';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -17,10 +16,10 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -31,7 +30,7 @@ const Navbar = () => {
   return (
     <div className="nav-container">
       <div className="logo-container">
-        <Avatar style={{ marginRight: "12px" }} src={icon} size={"large"} />
+        <Avatar style={{ marginRight: '12px' }} src={icon} size={'large'} />
         <Typography.Title level={2}>
           <Link to="/cryptoworld/">CryptoWorld </Link>
         </Typography.Title>
@@ -52,9 +51,9 @@ const Navbar = () => {
             <Menu.Item icon={<FundOutlined />}>
               <Link to="/cryptoworld/cryptocurrencies">Cryptocurrencies </Link>
             </Menu.Item>
-            <Menu.Item icon={<MoneyCollectOutlined />}>
+            {/* <Menu.Item icon={<MoneyCollectOutlined />}>
               <Link to="/cryptoworld/exchanges">Exchanges </Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item icon={<BulbOutlined />}>
               <Link to="/cryptoworld/news">News </Link>
             </Menu.Item>

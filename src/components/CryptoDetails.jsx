@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import HTMLReactParser from "html-react-parser";
-import { useParams } from "react-router";
-import millify from "millify";
-import { Select, Col, Row, Typography } from "antd";
+import React, { useState } from 'react';
+import HTMLReactParser from 'html-react-parser';
+import { useParams } from 'react-router';
+import millify from 'millify';
+import { Select, Col, Row, Typography } from 'antd';
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -13,19 +13,19 @@ import {
   NumberOutlined,
   ThunderboltOutlined,
   CheckOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
-} from "../services/cryptoApi";
-import LineChart from "./LineChart";
-import Loader from "./Loader";
+} from '../services/cryptoApi';
+import LineChart from './LineChart';
+import Loader from './Loader';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const CryptoDetails = () => {
-  const [timePeriod, setTimePeriod] = useState("7d");
+  const [timePeriod, setTimePeriod] = useState('7d');
   const { coinId } = useParams();
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: cryptoHistory, isFetching2 } = useGetCryptoHistoryQuery({
@@ -34,29 +34,33 @@ const CryptoDetails = () => {
   });
   if (isFetching || isFetching2) return <Loader />;
   const cryptoDetails = data?.data?.coin;
-  const time = ["24h", "7d", "30d", "3m", "1y", "3y", "5y"];
+  console.log(cryptoDetails);
+
+  const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
 
   const stats = [
     {
-      title: "Price to USD",
+      title: 'Price to USD',
       value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`,
       icon: <DollarCircleOutlined />,
     },
-    { title: "Rank", value: cryptoDetails?.rank, icon: <NumberOutlined /> },
+    { title: 'Rank', value: cryptoDetails?.rank, icon: <NumberOutlined /> },
     {
-      title: "24h Volume",
-      value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`,
+      title: '24h Volume',
+      value: `$ ${
+        cryptoDetails?.['24hVolume'] && millify(cryptoDetails?.['24hVolume'])
+      }`,
       icon: <ThunderboltOutlined />,
     },
     {
-      title: "Market Cap",
+      title: 'Market Cap',
       value: `$ ${
         cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)
       }`,
       icon: <DollarCircleOutlined />,
     },
     {
-      title: "All-time-high",
+      title: 'All-time-high',
       value: `$ ${millify(cryptoDetails?.allTimeHigh.price)}`,
       icon: <TrophyOutlined />,
     },
@@ -64,18 +68,18 @@ const CryptoDetails = () => {
 
   const genericStats = [
     {
-      title: "Number Of Markets",
+      title: 'Number Of Markets',
       value: cryptoDetails?.numberOfMarkets,
       icon: <FundOutlined />,
     },
     {
-      title: "Number Of Exchanges",
+      title: 'Number Of Exchanges',
       value: cryptoDetails?.numberOfExchanges,
       icon: <MoneyCollectOutlined />,
     },
     {
-      title: "Aprroved Supply",
-      value: cryptoDetails?.approvedSupply ? (
+      title: 'Aprroved Supply',
+      value: cryptoDetails?.supply?.confirmed ? (
         <CheckOutlined />
       ) : (
         <StopOutlined />
@@ -83,13 +87,13 @@ const CryptoDetails = () => {
       icon: <ExclamationCircleOutlined />,
     },
     {
-      title: "Total Supply",
-      value: `$ ${millify(cryptoDetails?.totalSupply)}`,
+      title: 'Total Supply',
+      value: `$ ${millify(cryptoDetails?.supply?.total || 0)}`,
       icon: <ExclamationCircleOutlined />,
     },
     {
-      title: "Circulating Supply",
-      value: `$ ${millify(cryptoDetails?.circulatingSupply)}`,
+      title: 'Circulating Supply',
+      value: `$ ${millify(cryptoDetails?.supply?.circulating || 0)}`,
       icon: <ExclamationCircleOutlined />,
     },
   ];
@@ -98,7 +102,7 @@ const CryptoDetails = () => {
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
-          {cryptoDetails.name} ({cryptoDetails.slug}) Price
+          {cryptoDetails.name} ({cryptoDetails.symbol}) Price
         </Title>
         <p>
           {cryptoDetails.name} live price in US Dollars. View value statistics,

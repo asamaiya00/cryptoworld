@@ -6,15 +6,14 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
 const Cryptocurrencies = ({ homepage }) => {
-  const { data, isFetching } = useGetCryptosQuery();
-  console.log(data);
-  const [cryptos, setCryptos] = useState(Object.values(data?.result ?? {}));
+  const limit = homepage ? 10 : 100;
+  const { data, isFetching } = useGetCryptosQuery(limit);
+  const [cryptos, setCryptos] = useState(data?.data?.coins);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     if (data) {
-      let filteredCryptos = Object.values(data?.result);
-      if (homepage) filteredCryptos.splice(10);
+      let filteredCryptos = data?.data?.coins;
       filteredCryptos = filteredCryptos?.filter((crypto) =>
         crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -46,28 +45,23 @@ const Cryptocurrencies = ({ homepage }) => {
               sm={12}
               lg={6}
               className="crypto-card"
-              key={crypto.key}
+              key={crypto.uuid}
             >
-              <Link to={`/cryptoworld/coin/profile/${crypto.key}`}>
+              <Link to={`/cryptoworld/coin/${crypto.uuid}`}>
                 <Card
                   title={`${crypto.rank}. ${crypto.name}`}
                   extra={
                     <img
                       className="crypto-image"
-                      src={`${crypto.logo}`}
+                      src={`${crypto.iconUrl}`}
                       alt={`${crypto.name}`}
                     />
                   }
                   hoverable
                 >
-                  <p>Price : {millify(crypto?.quote?.quotes_price) || 0}</p>
-                  <p>
-                    Market cap : {millify(crypto?.quote?.quotes_marketCap) || 0}
-                  </p>
-                  <p>
-                    Daily change :{' '}
-                    {millify(crypto?.quote?.quotes_percentChange24h) || 0}%
-                  </p>
+                  <p>Price : {millify(crypto?.price) || 0}</p>
+                  <p>Market cap : {millify(crypto?.marketCap) || 0}</p>
+                  <p>Daily change : {millify(crypto?.change) || 0}%</p>
                 </Card>
               </Link>
             </Col>

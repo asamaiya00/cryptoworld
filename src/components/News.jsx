@@ -17,7 +17,7 @@ const News = ({ homepage }) => {
     newsCategory,
     count: homepage ? 6 : 12,
   });
-  // const { data: cryptos } = useGetCryptosQuery(100);
+  const { data: cryptos } = useGetCryptosQuery(100);
 
   if (isFetching) return <Loader />;
 
@@ -36,9 +36,11 @@ const News = ({ homepage }) => {
             }
           >
             <Option value="Cryptocurrency"> All Cryptocurrencies</Option>
-            {/* {cryptos?.data?.coins?.map((crypto) => (
-              <Option key={crypto.name} value={crypto.name}>{crypto.name}</Option>
-            ))} */}
+            {cryptos?.data?.coins?.map((crypto) => (
+              <Option key={crypto.name} value={crypto.name}>
+                {crypto.name}
+              </Option>
+            ))}
           </Select>
         </Col>
       ) : (
